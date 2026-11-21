@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ExcelCleaner</title>
+<meta name="description" content="Adelgaza archivos Excel que pesan muchísimo o tardan en abrir. Tu original no se toca.">
+<link rel="icon" href="img/icono.png">
+<style>
+:root{--bg:#0f1b2d;--panel:#16263d;--line:#2a4163;--txt:#eaf1fb;--mut:#9fb3cf;--acc:#2fa36b;--acc2:#3cc486}
+@media (prefers-color-scheme:light){:root{--bg:#f4f7fb;--panel:#fff;--line:#d5deea;--txt:#13233a;--mut:#51647f;--acc:#1f8a56;--acc2:#177246}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:17px/1.55 system-ui,Segoe UI,Roboto,sans-serif;text-align:center}
+main{max-width:760px;margin:0 auto;padding:0 16px}
+header{padding:56px 0 24px}
+header img{width:88px;height:88px}
+h1{font-size:2.4rem;margin:12px 0 4px;letter-spacing:.5px}
+.sub{color:var(--mut);font-size:1.15rem;margin:0 auto;max-width:520px}
+.btn{display:inline-block;margin:28px 0 8px;padding:15px 34px;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;border:1px solid var(--acc2)}
+.btn:hover{background:var(--acc2)}
+.nota{color:var(--mut);font-size:.9rem;margin:0}
+section{margin:44px 0}
+h2{font-size:1.4rem;margin:0 0 18px}
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 14px}
+.card b{display:block;font-size:2rem;color:var(--acc2)}
+.card p{margin:6px 0 0;color:var(--mut)}
+ul{list-style:none;padding:0;margin:0 auto;max-width:520px;text-align:left}
+li{padding:10px 0;border-bottom:1px solid var(--line)}
+li::before{content:"✓ ";color:var(--acc2);font-weight:700}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mut);font-size:.9rem}
+@media(max-width:560px){.pasos{grid-template-columns:1fr}h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img src="img/icono.png" alt="Logo de ExcelCleaner">
+  <h1>ExcelCleaner</h1>
+  <p class="sub">Adelgaza los Excel que pesan muchísimo o tardan en abrir. Tu archivo original no se toca.</p>
+  <a class="btn" href="https://github.com/elulikk/excelcleaner-landing/releases/latest/download/ExcelCleaner.exe">Descargar para Windows</a>
+  <p class="nota">Gratis · no necesita instalación · .xlsx y .xlsm</p>
+</header>
+<section>
+  <h2>Se usa en 3 pasos</h2>
+  <div class="pasos">
+    <div class="card"><b>1</b><p>Arrastrá el Excel a la ventana</p></div>
+    <div class="card"><b>2</b><p>Dejá las opciones como están</p></div>
+    <div class="card"><b>3</b><p>Tocá «Limpiar archivo»</p></div>
+  </div>
+</section>
+<section>
+  <h2>Qué hace</h2>
+  <ul>
+    <li>Crea un archivo nuevo al lado, terminado en <code>_Limpio</code></li>
+    <li>Quita estilos y basura acumulada que inflan el peso</li>
+    <li>Respeta datos, fórmulas, filtros, validaciones y hojas ocultas</li>
+    <li>Conserva gráficos, imágenes y formato condicional</li>
+    <li>Muestra el antes y el después</li>
+    <li>Procesa varios archivos a la vez</li>
+  </ul>
+</section>
+</main>
+<footer>San Martín de los Andes, Argentina</footer>
+</body>
+</html>
