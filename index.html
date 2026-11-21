@@ -3,64 +3,162 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ExcelCleaner</title>
-<meta name="description" content="Adelgaza archivos Excel que pesan muchísimo o tardan en abrir. Tu original no se toca.">
+<title>Excel Reaper</title>
+<meta name="description" content="Adelgaza los Excel que pesan muchísimo o tardan en abrir. Gratis, para Windows, sin instalar. Tu original no se toca.">
+<meta property="og:title" content="Excel Reaper 2.0">
+<meta property="og:description" content="Tu Excel pesado, liviano. Saca la basura invisible que lo infla. Gratis, para Windows.">
+<meta property="og:image" content="https://elulikk.github.io/excelcleaner-landing/img/captura-resultado.png">
 <link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f1b2d;--panel:#16263d;--line:#2a4163;--txt:#eaf1fb;--mut:#9fb3cf;--acc:#2fa36b;--acc2:#3cc486}
-@media (prefers-color-scheme:light){:root{--bg:#f4f7fb;--panel:#fff;--line:#d5deea;--txt:#13233a;--mut:#51647f;--acc:#1f8a56;--acc2:#177246}}
+:root{--bg:#0b0b0b;--panel:#121212;--line:#232323;--line2:#3a3a3a;--txt:#ececec;--mut:#8c8c8c;--dim:#5a5a5a;--acc:#c6ff1a;--acc2:#dcff6b;--ink:#0b0b0b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--txt);font:17px/1.55 system-ui,Segoe UI,Roboto,sans-serif;text-align:center}
-main{max-width:760px;margin:0 auto;padding:0 16px}
-header{padding:56px 0 24px}
-header img{width:88px;height:88px}
-h1{font-size:2.4rem;margin:12px 0 4px;letter-spacing:.5px}
-.sub{color:var(--mut);font-size:1.15rem;margin:0 auto;max-width:520px}
-.btn{display:inline-block;margin:28px 0 8px;padding:15px 34px;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;border:1px solid var(--acc2)}
-.btn:hover{background:var(--acc2)}
-.nota{color:var(--mut);font-size:.9rem;margin:0}
-section{margin:44px 0}
-h2{font-size:1.4rem;margin:0 0 18px}
-.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 14px}
-.card b{display:block;font-size:2rem;color:var(--acc2)}
-.card p{margin:6px 0 0;color:var(--mut)}
-ul{list-style:none;padding:0;margin:0 auto;max-width:520px;text-align:left}
-li{padding:10px 0;border-bottom:1px solid var(--line)}
-li::before{content:"✓ ";color:var(--acc2);font-weight:700}
-footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mut);font-size:.9rem}
-@media(max-width:560px){.pasos{grid-template-columns:1fr}h1{font-size:2rem}}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--txt);font:17px/1.6 Barlow,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",Consolas,monospace}
+.d{font-family:"Barlow Condensed",Bahnschrift,sans-serif;font-weight:700;text-transform:uppercase;line-height:.95}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.top{display:flex;align-items:center;gap:12px;padding:22px 0;border-bottom:1px solid var(--line)}
+.top img{width:30px;height:30px}
+.top b{font-size:1.3rem}
+.top span{margin-left:auto;color:var(--mut);font-size:.72rem}
+
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:72px 0 64px}
+.tag{color:var(--acc);font-size:.72rem;letter-spacing:.12em}
+h1{font-size:clamp(3rem,7vw,5.4rem);margin:14px 0 18px}
+h1 em{font-style:normal;color:var(--acc)}
+.sub{color:var(--mut);font-size:1.12rem;max-width:32ch;margin:0}
+.cta{display:inline-flex;align-items:baseline;gap:14px;margin-top:32px;padding:18px 30px;background:var(--acc);color:var(--ink);text-decoration:none;font-size:1.55rem}
+.cta:hover{background:var(--acc2)}
+.cta small{font-family:"JetBrains Mono",monospace;font-size:.68rem;font-weight:600;text-transform:none;opacity:.7}
+.nota{color:var(--mut);font-size:.72rem;margin:14px 0 0;letter-spacing:.04em}
+
+.shot{display:block;width:100%;height:auto;border:1px solid var(--line2)}
+.marco{position:relative;padding:14px}
+.marco::before,.marco::after,.marco i::before,.marco i::after{content:"";position:absolute;width:22px;height:22px;border:0 solid var(--acc)}
+.marco::before{top:0;left:0;border-width:3px 0 0 3px}
+.marco::after{top:0;right:0;border-width:3px 3px 0 0}
+.marco i::before{bottom:0;left:0;border-width:0 0 3px 3px}
+.marco i::after{bottom:0;right:0;border-width:0 3px 3px 0}
+
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font-size:2.6rem;margin:8px 0 34px}
+
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.paso{padding:26px 24px;border-right:1px solid var(--line)}
+.paso:last-child{border-right:0}
+.paso .n{color:var(--acc);font-size:.8rem}
+.paso h3{font-size:1.9rem;margin:10px 0 8px}
+.paso p{color:var(--mut);margin:0;font-size:.98rem}
+
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+figure{margin:0}
+figcaption{color:var(--mut);font-size:.72rem;margin-top:10px}
+
+.lista{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;list-style:none;padding:0;margin:0}
+.lista li{padding:14px 0 14px 22px;border-bottom:1px solid var(--line);position:relative}
+.lista li::before{content:"";position:absolute;left:0;top:1.35em;width:8px;height:8px;background:var(--acc)}
+
+dt{font-weight:500;margin-top:22px}
+dd{margin:6px 0 0;color:var(--mut)}
+code{font-family:"JetBrains Mono",monospace;font-size:.85em;color:var(--txt)}
+
+.final{text-align:center}
+
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--dim);font-size:.72rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;gap:36px;padding:44px 0}
+  .pasos{grid-template-columns:1fr}
+  .paso{border-right:0;border-bottom:1px solid var(--line)}
+  .paso:last-child{border-bottom:0}
+  .galeria,.lista{grid-template-columns:1fr}
+  h2{font-size:2.1rem}
+  .cta{font-size:1.3rem;padding:16px 22px}
+  .top span{display:none}
+}
 </style>
 </head>
 <body>
-<main>
-<header>
-  <img src="img/icono.png" alt="Logo de ExcelCleaner">
-  <h1>ExcelCleaner</h1>
-  <p class="sub">Adelgaza los Excel que pesan muchísimo o tardan en abrir. Tu archivo original no se toca.</p>
-  <a class="btn" href="https://github.com/elulikk/excelcleaner-landing/releases/latest/download/ExcelCleaner.exe">Descargar para Windows</a>
-  <p class="nota">Gratis · no necesita instalación · .xlsx y .xlsm</p>
-</header>
-<section>
-  <h2>Se usa en 3 pasos</h2>
-  <div class="pasos">
-    <div class="card"><b>1</b><p>Arrastrá el Excel a la ventana</p></div>
-    <div class="card"><b>2</b><p>Dejá las opciones como están</p></div>
-    <div class="card"><b>3</b><p>Tocá «Limpiar archivo»</p></div>
+<div class="wrap">
+  <div class="top">
+    <img src="img/icono.png" alt="">
+    <b class="d">Excel Reaper</b>
+    <span class="mono">V2.0 · WINDOWS</span>
   </div>
-</section>
-<section>
-  <h2>Qué hace</h2>
-  <ul>
-    <li>Crea un archivo nuevo al lado, terminado en <code>_Limpio</code></li>
-    <li>Quita estilos y basura acumulada que inflan el peso</li>
-    <li>Respeta datos, fórmulas, filtros, validaciones y hojas ocultas</li>
-    <li>Conserva gráficos, imágenes y formato condicional</li>
-    <li>Muestra el antes y el después</li>
-    <li>Procesa varios archivos a la vez</li>
-  </ul>
-</section>
-</main>
-<footer>San Martín de los Andes, Argentina</footer>
+
+  <div class="hero">
+    <div>
+      <div class="tag mono">[ PURGA DE BASURA INVISIBLE EN .XLSX ]</div>
+      <h1 class="d">Tu Excel pesado, <em>liviano.</em></h1>
+      <p class="sub">Para los archivos que pesan muchísimo o tardan una eternidad en abrir, aunque tengan pocos datos. Tu original no se toca.</p>
+      <a class="cta d" href="https://github.com/elulikk/excelcleaner-landing/releases/latest/download/ExcelReaper.exe">Descargar gratis <small>.exe · 48 MB</small></a>
+      <p class="nota mono">WINDOWS 10/11 · SIN INSTALAR · FUNCIONA SIN INTERNET</p>
+    </div>
+    <div class="marco"><i></i><img class="shot" src="img/captura-resultado.png" width="780" height="720" alt="Excel Reaper: un archivo que pasó de 24,3 MB a 717 KB"></div>
+  </div>
+
+  <section>
+    <div class="tag mono">[ CÓMO SE USA ]</div>
+    <h2 class="d">Tres pasos. Cero configuración.</h2>
+    <div class="pasos">
+      <div class="paso"><div class="n mono">01</div><h3 class="d">Cargar</h3><p>Arrastrá el Excel a la ventana, o hacé clic para elegirlo. Podés soltar varios a la vez.</p></div>
+      <div class="paso"><div class="n mono">02</div><h3 class="d">Purgar</h3><p>Tocá <b>LIMPIAR</b>. La barra muestra el avance y cuánto falta, aunque el archivo sea enorme.</p></div>
+      <div class="paso"><div class="n mono">03</div><h3 class="d">Listo</h3><p>Ves el antes y el después, y abrís el archivo limpio con un clic. Queda al lado del original.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag mono">[ ASÍ SE VE ]</div>
+    <h2 class="d">Sin vueltas.</h2>
+    <div class="galeria">
+      <figure><img class="shot" src="img/captura-inicio.png" width="780" height="720" loading="lazy" alt="Pantalla inicial: soltá el Excel acá"><figcaption class="mono">01 · SOLTÁS EL ARCHIVO</figcaption></figure>
+      <figure><img class="shot" src="img/captura-proceso.png" width="780" height="720" loading="lazy" alt="Limpiando: barra de progreso con tiempo restante y botón cancelar"><figcaption class="mono">02 · AVANCE Y TIEMPO RESTANTE A LA VISTA</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag mono">[ QUÉ HACE ]</div>
+    <h2 class="d">Saca la basura. Deja lo tuyo.</h2>
+    <ul class="lista">
+      <li>Borra filas, columnas y dibujos fantasma que inflan el peso</li>
+      <li>Reconstruye el libro y tira estilos acumulados</li>
+      <li>Respeta datos, fórmulas, links y comentarios</li>
+      <li>Mantiene combinadas, filtros, filas fijas y hojas ocultas</li>
+      <li>Crea un archivo nuevo terminado en <code>_Limpio</code></li>
+      <li>Limpia varios archivos en tanda</li>
+      <li>Se cancela al instante, sin dejar nada a medias</li>
+      <li>Si algo falla, te dice qué pasó en criollo</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="tag mono">[ PREGUNTAS ]</div>
+    <h2 class="d">Por las dudas.</h2>
+    <dl>
+      <dt>¿Modifica mi archivo?</dt>
+      <dd>No. Crea uno nuevo al lado, con el mismo nombre terminado en <code>_Limpio</code>. Si ya existía, crea <code>_Limpio (2)</code>.</dd>
+      <dt>Windows dice «Windows protegió su PC». ¿Qué hago?</dt>
+      <dd>Pasa con cualquier programa nuevo que no tiene firma digital paga. Tocá <b>Más información</b> y después <b>Ejecutar de todas formas</b>.</dd>
+      <dt>¿Sube mis datos a algún lado?</dt>
+      <dd>No. Todo pasa en tu computadora; ni siquiera necesita internet.</dd>
+      <dt>Tengo un .xls viejo.</dt>
+      <dd>Abrilo en Excel y guardalo como «Libro de Excel (.xlsx)». Después pasalo por Excel Reaper.</dd>
+    </dl>
+  </section>
+
+  <section class="final">
+    <h2 class="d">Probalo con tu Excel más pesado.</h2>
+    <a class="cta d" href="https://github.com/elulikk/excelcleaner-landing/releases/latest/download/ExcelReaper.exe">Descargar gratis <small>.exe · 48 MB</small></a>
+  </section>
+
+  <footer class="mono">
+    <span>EXCEL REAPER 2.0 · ULIK</span>
+    <span>San Martín de los Andes, Argentina</span>
+  </footer>
+</div>
 </body>
 </html>
